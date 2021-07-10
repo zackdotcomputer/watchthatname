@@ -7,8 +7,8 @@
 // 'src/pages/HomePage/HomePage.js'         -> HomePage
 // 'src/pages/Admin/BooksPage/BooksPage.js' -> AdminBooksPage
 
-import { Router, Route, Set } from "@redwoodjs/router";
-import DomainwatchLayout from "./layouts/DomainwatchLayout/DomainwatchLayout";
+import { Router, Route, Set } from '@redwoodjs/router';
+import DomainwatchLayout from './layouts/DomainwatchLayout/DomainwatchLayout';
 
 const Routes = () => {
   return (
