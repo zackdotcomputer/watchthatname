@@ -9,5 +9,5 @@
  */
 
 export const requireAuth = () => {
-  return true
-}
+  return true;
+};
