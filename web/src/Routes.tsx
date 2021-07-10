@@ -7,12 +7,15 @@
 // 'src/pages/HomePage/HomePage.js'         -> HomePage
 // 'src/pages/Admin/BooksPage/BooksPage.js' -> AdminBooksPage
 
-import { Router, Route } from "@redwoodjs/router";
+import { Router, Route, Set } from "@redwoodjs/router";
+import DomainwatchLayout from "./layouts/DomainwatchLayout/DomainwatchLayout";
 
 const Routes = () => {
   return (
     <Router>
-      <Route path="/about" page={AboutPage} name="about" />
+      <Set wrap={DomainwatchLayout}>
+        <Route path="/about" page={AboutPage} name="about" />
+      </Set>
       <Route path="/" page={HomePage} name="home" />
       <Route notfound page={NotFoundPage} />
     </Router>

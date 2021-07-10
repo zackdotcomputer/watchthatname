@@ -1,18 +1,30 @@
 // https://prettier.io/docs/en/options.html
 /** @type {import('prettier').RequiredOptions} */
 module.exports = {
-  trailingComma: 'es5',
+  arrowParens: "always",
   bracketSpacing: true,
-  tabWidth: 2,
-  semi: false,
+  embeddedLanguageFormatting: "auto",
+  htmlWhitespaceSensitivity: "css",
+  insertPragma: false,
+  jsxBracketSameLine: false,
+  jsxSingleQuote: false,
+  endOfLine: "lf",
+  printWidth: 100,
+  proseWrap: "preserve",
+  quoteProps: "as-needed",
+  requirePragma: false,
+  semi: true,
   singleQuote: true,
-  arrowParens: 'always',
+  tabWidth: 2,
+  trailingComma: "none",
+  useTabs: false,
+  vueIndentScriptAndStyle: false,
   overrides: [
     {
-      files: 'Routes.*',
+      files: "Routes.*",
       options: {
-        printWidth: 999,
-      },
-    },
-  ],
-}
+        printWidth: 999
+      }
+    }
+  ]
+};
