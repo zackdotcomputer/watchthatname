@@ -1,5 +1,5 @@
-import { Link, routes } from '@redwoodjs/router';
-import React from 'react';
+import { Link, routes } from "@redwoodjs/router";
+import React from "react";
 
 type DomainwatchLayoutProps = {
   children: React.ReactNode;
