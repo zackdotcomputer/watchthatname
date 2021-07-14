@@ -1,4 +1,4 @@
-import DomainwatchLayout from "./DomainwatchLayout";
+import DomainwatchLayout from './DomainwatchLayout';
 
 export const generated = () => {
   return (
@@ -8,4 +8,4 @@ export const generated = () => {
   );
 };
 
-export default { title: "Layouts/DomainwatchLayout" };
+export default { title: 'Layouts/DomainwatchLayout' };
