@@ -1,6 +1,6 @@
 datasource db {
-  provider = "sqlite"
-  url      = env("DATABASE_URL")
+  provider = "postgres"
+  url      = env("PGDATABASE")
 }
 
 generator client {
@@ -18,7 +18,7 @@ model UserExample {
 }
 
 model Wishdomain {
-  id        Int      @id @default(autoincrement())
+  id        String   @id @default(cuid())
   domain    String
   createdAt DateTime @default(now())
 }
