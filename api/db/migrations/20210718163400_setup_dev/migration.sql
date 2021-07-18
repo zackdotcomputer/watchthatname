@@ -1,15 +1,19 @@
 -- CreateTable
 CREATE TABLE "UserExample" (
-    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "id" SERIAL NOT NULL,
     "email" TEXT NOT NULL,
-    "name" TEXT
+    "name" TEXT,
+
+    PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Wishdomain" (
-    "id" TEXT NOT NULL PRIMARY KEY,
+    "id" TEXT NOT NULL,
     "domain" TEXT NOT NULL,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    PRIMARY KEY ("id")
 );
 
 -- CreateIndex
