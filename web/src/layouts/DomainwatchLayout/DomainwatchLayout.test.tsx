@@ -1,9 +1,9 @@
-import { render } from '@redwoodjs/testing';
+import { render } from "@redwoodjs/testing";
 
-import DomainwatchLayout from './DomainwatchLayout';
+import DomainwatchLayout from "./DomainwatchLayout";
 
-describe('DomainwatchLayout', () => {
-  it('renders successfully', () => {
+describe("DomainwatchLayout", () => {
+  it("renders successfully", () => {
     expect(() => {
       render(<DomainwatchLayout />);
     }).not.toThrow();
