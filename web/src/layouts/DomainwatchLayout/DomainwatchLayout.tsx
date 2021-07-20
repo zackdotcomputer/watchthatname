@@ -1,5 +1,6 @@
 import { Link, routes } from "@redwoodjs/router";
 import React from "react";
+import UserStateNavBit from "src/components/UserStateNavBit/UserStateNavBit";
 
 type DomainwatchLayoutProps = {
   children: React.ReactNode;
@@ -14,6 +15,9 @@ const DomainwatchLayout = ({ children }: DomainwatchLayoutProps) => {
           <ul>
             <li>
               <Link to={routes.about()}>About</Link>
+            </li>
+            <li>
+              <UserStateNavBit />
             </li>
           </ul>
         </nav>

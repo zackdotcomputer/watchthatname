@@ -8,8 +8,10 @@
 [web]
   port = 8910
   apiProxyPath = "/api"
+  includeEnvironmentVariables = ['NEXT_PUBLIC_CLERK_FRONTEND_API']
 [api]
   port = 8911
+  includeEnvironmentVariables = ['CLERK_API_KEY']
 [browser]
   open = true
 [experimental]

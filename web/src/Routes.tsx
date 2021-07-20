@@ -7,8 +7,8 @@
 // 'src/pages/HomePage/HomePage.js'         -> HomePage
 // 'src/pages/Admin/BooksPage/BooksPage.js' -> AdminBooksPage
 
-import { Router, Route, Set } from '@redwoodjs/router'
-import WishdomainsLayout from 'src/layouts/WishdomainsLayout';
+import { Router, Route, Set } from "@redwoodjs/router";
+import WishdomainsLayout from "src/layouts/WishdomainsLayout";
 import DomainwatchLayout from "./layouts/DomainwatchLayout/DomainwatchLayout";
 
 const Routes = () => {
@@ -22,8 +22,8 @@ const Routes = () => {
       </Set>
       <Set wrap={DomainwatchLayout}>
         <Route path="/about" page={AboutPage} name="about" />
+        <Route path="/" page={HomePage} name="home" />
       </Set>
-      <Route path="/" page={HomePage} name="home" />
       <Route notfound page={NotFoundPage} />
     </Router>
   );
