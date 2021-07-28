@@ -1,11 +1,11 @@
-import { render } from '@redwoodjs/testing'
+import { render } from "@redwoodjs/testing";
 
-import SearchPage from './SearchPage'
+import SearchPage from "./SearchPage";
 
-describe('SearchPage', () => {
-  it('renders successfully', () => {
+describe("SearchPage", () => {
+  it("renders successfully", () => {
     expect(() => {
-      render(<SearchPage />)
-    }).not.toThrow()
-  })
-})
+      render(<SearchPage />);
+    }).not.toThrow();
+  });
+});

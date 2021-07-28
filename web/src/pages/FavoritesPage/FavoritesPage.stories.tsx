@@ -1,7 +1,7 @@
-import FavoritesPage from './FavoritesPage'
+import FavoritesPage from "./FavoritesPage";
 
 export const generated = () => {
-  return <FavoritesPage />
-}
+  return <FavoritesPage />;
+};
 
-export default { title: 'Pages/FavoritesPage' }
+export default { title: "Pages/FavoritesPage" };

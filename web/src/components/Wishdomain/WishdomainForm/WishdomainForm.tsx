@@ -1,22 +1,15 @@
-import {
-  Form,
-  FormError,
-  FieldError,
-  Label,
-  TextField,
-  Submit,
-} from '@redwoodjs/forms'
+import { Form, FormError, FieldError, Label, TextField, Submit } from "@redwoodjs/forms";
 
 const formatDatetime = (value) => {
   if (value) {
-    return value.replace(/:\d{2}\.\d{3}\w/, '')
+    return value.replace(/:\d{2}\.\d{3}\w/, "");
   }
-}
+};
 
 const WishdomainForm = (props) => {
   const onSubmit = (data) => {
-    props.onSave(data, props?.wishdomain?.id)
-  }
+    props.onSave(data, props?.wishdomain?.id);
+  };
 
   return (
     <div className="rw-form-wrapper">
@@ -28,11 +21,7 @@ const WishdomainForm = (props) => {
           listClassName="rw-form-error-list"
         />
 
-        <Label
-          name="domain"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
+        <Label name="domain" className="rw-label" errorClassName="rw-label rw-label-error">
           Domain
         </Label>
         <TextField
@@ -45,16 +34,13 @@ const WishdomainForm = (props) => {
         <FieldError name="domain" className="rw-field-error" />
 
         <div className="rw-button-group">
-          <Submit
-            disabled={props.loading}
-            className="rw-button rw-button-blue"
-          >
+          <Submit disabled={props.loading} className="rw-button rw-button-blue">
             Save
           </Submit>
         </div>
       </Form>
     </div>
-  )
-}
+  );
+};
 
-export default WishdomainForm
+export default WishdomainForm;

@@ -1,11 +1,11 @@
-import WishdomainCell from 'src/components/Wishdomain/WishdomainCell'
+import WishdomainCell from "src/components/Wishdomain/WishdomainCell";
 
 type WishdomainPageProps = {
-  id: String
-}
+  id: string;
+};
 
 const WishdomainPage = ({ id }: WishdomainPageProps) => {
-  return <WishdomainCell id={id} />
-}
+  return <WishdomainCell id={id} />;
+};
 
-export default WishdomainPage
+export default WishdomainPage;

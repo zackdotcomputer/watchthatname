@@ -1,7 +1,7 @@
-import SearchPage from './SearchPage'
+import SearchPage from "./SearchPage";
 
 export const generated = () => {
-  return <SearchPage />
-}
+  return <SearchPage />;
+};
 
-export default { title: 'Pages/SearchPage' }
+export default { title: "Pages/SearchPage" };

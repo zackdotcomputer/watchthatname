@@ -1,4 +1,4 @@
-import { Link, routes } from '@redwoodjs/router'
+import { Link, routes } from "@redwoodjs/router";
 
 const SearchPage = () => {
   return (
@@ -12,7 +12,7 @@ const SearchPage = () => {
         <Link to={routes.search()}>Search</Link>`
       </p>
     </>
-  )
-}
+  );
+};
 
-export default SearchPage
+export default SearchPage;

@@ -1,11 +1,11 @@
-import { render } from '@redwoodjs/testing'
+import { render } from "@redwoodjs/testing";
 
-import FavoritesPage from './FavoritesPage'
+import FavoritesPage from "./FavoritesPage";
 
-describe('FavoritesPage', () => {
-  it('renders successfully', () => {
+describe("FavoritesPage", () => {
+  it("renders successfully", () => {
     expect(() => {
-      render(<FavoritesPage />)
-    }).not.toThrow()
-  })
-})
+      render(<FavoritesPage />);
+    }).not.toThrow();
+  });
+});

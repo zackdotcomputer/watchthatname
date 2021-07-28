@@ -1,7 +1,7 @@
-import UserStateNavBit from './UserStateNavBit'
+import UserStateNavBit from "./UserStateNavBit";
 
 export const generated = () => {
-  return <UserStateNavBit />
-}
+  return <UserStateNavBit />;
+};
 
-export default { title: 'Components/UserStateNavBit' }
+export default { title: "Components/UserStateNavBit" };

@@ -1,6 +1,6 @@
-import { useMutation } from '@redwoodjs/web'
-import { toast } from '@redwoodjs/web/toast'
-import { Link, routes, navigate } from '@redwoodjs/router'
+import { useMutation } from "@redwoodjs/web";
+import { toast } from "@redwoodjs/web/toast";
+import { Link, routes, navigate } from "@redwoodjs/router";
 
 const DELETE_WISHDOMAIN_MUTATION = gql`
   mutation DeleteWishdomainMutation($id: String!) {
@@ -8,41 +8,41 @@ const DELETE_WISHDOMAIN_MUTATION = gql`
       id
     }
   }
-`
+`;
 
 const jsonDisplay = (obj) => {
   return (
     <pre>
       <code>{JSON.stringify(obj, null, 2)}</code>
     </pre>
-  )
-}
+  );
+};
 
 const timeTag = (datetime) => {
   return (
     <time dateTime={datetime} title={datetime}>
       {new Date(datetime).toUTCString()}
     </time>
-  )
-}
+  );
+};
 
 const checkboxInputTag = (checked) => {
-  return <input type="checkbox" checked={checked} disabled />
-}
+  return <input type="checkbox" checked={checked} disabled />;
+};
 
 const Wishdomain = ({ wishdomain }) => {
   const [deleteWishdomain] = useMutation(DELETE_WISHDOMAIN_MUTATION, {
     onCompleted: () => {
-      toast.success('Wishdomain deleted')
-      navigate(routes.wishdomains())
-    },
-  })
+      toast.success("Wishdomain deleted");
+      navigate(routes.wishdomains());
+    }
+  });
 
   const onDeleteClick = (id) => {
-    if (confirm('Are you sure you want to delete wishdomain ' + id + '?')) {
-      deleteWishdomain({ variables: { id } })
+    if (confirm("Are you sure you want to delete wishdomain " + id + "?")) {
+      deleteWishdomain({ variables: { id } });
     }
-  }
+  };
 
   return (
     <>
@@ -55,10 +55,12 @@ const Wishdomain = ({ wishdomain }) => {
             <tr>
               <th>Id</th>
               <td>{wishdomain.id}</td>
-            </tr><tr>
+            </tr>
+            <tr>
               <th>Domain</th>
               <td>{wishdomain.domain}</td>
-            </tr><tr>
+            </tr>
+            <tr>
               <th>Created at</th>
               <td>{timeTag(wishdomain.createdAt)}</td>
             </tr>
@@ -81,7 +83,7 @@ const Wishdomain = ({ wishdomain }) => {
         </a>
       </nav>
     </>
-  )
-}
+  );
+};
 
-export default Wishdomain
+export default Wishdomain;

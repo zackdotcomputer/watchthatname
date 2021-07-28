@@ -1,11 +1,11 @@
-import type { EditWishdomainById } from 'types/graphql'
+import type { EditWishdomainById } from "types/graphql";
 
-import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
-import { useMutation } from '@redwoodjs/web'
-import { toast } from '@redwoodjs/web/toast'
-import { navigate, routes } from '@redwoodjs/router'
+import type { CellSuccessProps, CellFailureProps } from "@redwoodjs/web";
+import { useMutation } from "@redwoodjs/web";
+import { toast } from "@redwoodjs/web/toast";
+import { navigate, routes } from "@redwoodjs/router";
 
-import WishdomainForm from 'src/components/Wishdomain/WishdomainForm'
+import WishdomainForm from "src/components/Wishdomain/WishdomainForm";
 
 export const QUERY = gql`
   query EditWishdomainById($id: String!) {
@@ -15,7 +15,7 @@ export const QUERY = gql`
       createdAt
     }
   }
-`
+`;
 const UPDATE_WISHDOMAIN_MUTATION = gql`
   mutation UpdateWishdomainMutation($id: String!, $input: UpdateWishdomainInput!) {
     updateWishdomain(id: $id, input: $input) {
@@ -24,25 +24,25 @@ const UPDATE_WISHDOMAIN_MUTATION = gql`
       createdAt
     }
   }
-`
+`;
 
-export const Loading = () => <div>Loading...</div>
+export const Loading = () => <div>Loading...</div>;
 
 export const Failure = ({ error }: CellFailureProps) => (
-  <div style={{ color: 'red' }}>Error: {error.message}</div>
-)
+  <div style={{ color: "red" }}>Error: {error.message}</div>
+);
 
 export const Success = ({ wishdomain }: CellSuccessProps<EditWishdomainById>) => {
   const [updateWishdomain, { loading, error }] = useMutation(UPDATE_WISHDOMAIN_MUTATION, {
     onCompleted: () => {
-      toast.success('Wishdomain updated')
-      navigate(routes.wishdomains())
-    },
-  })
+      toast.success("Wishdomain updated");
+      navigate(routes.wishdomains());
+    }
+  });
 
   const onSave = (input, id) => {
-    updateWishdomain({ variables: { id, input } })
-  }
+    updateWishdomain({ variables: { id, input } });
+  };
 
   return (
     <div className="rw-segment">
@@ -53,5 +53,5 @@ export const Success = ({ wishdomain }: CellSuccessProps<EditWishdomainById>) =>
         <WishdomainForm wishdomain={wishdomain} onSave={onSave} error={error} loading={loading} />
       </div>
     </div>
-  )
-}
+  );
+};

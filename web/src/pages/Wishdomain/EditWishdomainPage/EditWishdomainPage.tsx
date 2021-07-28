@@ -1,11 +1,11 @@
-import EditWishdomainCell from 'src/components/Wishdomain/EditWishdomainCell'
+import EditWishdomainCell from "src/components/Wishdomain/EditWishdomainCell";
 
 type WishdomainPageProps = {
-  id: String
-}
+  id: string;
+};
 
 const EditWishdomainPage = ({ id }: WishdomainPageProps) => {
-  return <EditWishdomainCell id={id} />
-}
+  return <EditWishdomainCell id={id} />;
+};
 
-export default EditWishdomainPage
+export default EditWishdomainPage;

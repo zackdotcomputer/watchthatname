@@ -24,7 +24,7 @@ interface CreateWishdomainArgs {
 }
 
 export const createWishdomain = ({ input }: CreateWishdomainArgs) => {
-  requireAuth()
+  requireAuth();
   console.log(`Would be owned by ${JSON.stringify(context.currentUser)}`);
   return db.wishdomain.create({
     data: input

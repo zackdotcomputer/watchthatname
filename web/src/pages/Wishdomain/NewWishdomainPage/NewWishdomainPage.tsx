@@ -1,7 +1,7 @@
-import NewWishdomain from 'src/components/Wishdomain/NewWishdomain'
+import NewWishdomain from "src/components/Wishdomain/NewWishdomain";
 
 const NewWishdomainPage = () => {
-  return <NewWishdomain />
-}
+  return <NewWishdomain />;
+};
 
-export default NewWishdomainPage
+export default NewWishdomainPage;

@@ -1,4 +1,4 @@
-import { AuthenticationError, ForbiddenError, parseJWT } from '@redwoodjs/api'
+import { AuthenticationError, ForbiddenError, parseJWT } from "@redwoodjs/api";
 
 /**
  * getCurrentUser returns the user information together with
@@ -12,13 +12,9 @@ import { AuthenticationError, ForbiddenError, parseJWT } from '@redwoodjs/api'
  *
  * @see https://github.com/redwoodjs/redwood/tree/main/packages/auth for examples
  */
-export const getCurrentUser = async (
-  decoded,
-  { _token, _type },
-  { _event, _context }
-) => {
-  return { ...decoded, roles: parseJWT({ decoded }).roles }
-}
+export const getCurrentUser = async (decoded, { _token, _type }, { _event, _context }) => {
+  return { ...decoded, roles: parseJWT({ decoded }).roles };
+};
 
 /**
  * The user is authenticated if there is a currentUser in the context
@@ -26,8 +22,8 @@ export const getCurrentUser = async (
  * @returns {boolean} - If the currentUser is authenticated
  */
 export const isAuthenticated = () => {
-  return !!context.currentUser
-}
+  return !!context.currentUser;
+};
 
 /**
  * Checks if the currentUser is authenticated (and assigned one of the given roles)
@@ -39,24 +35,24 @@ export const isAuthenticated = () => {
  */
 export const hasRole = ({ roles }) => {
   if (!isAuthenticated()) {
-    return false
+    return false;
   }
 
   if (roles) {
     if (Array.isArray(roles)) {
-      return context.currentUser.roles?.some((r) => roles.includes(r))
+      return context.currentUser.roles?.some((r) => roles.includes(r));
     }
 
-    if (typeof roles === 'string') {
-      return context.currentUser.roles?.includes(roles)
+    if (typeof roles === "string") {
+      return context.currentUser.roles?.includes(roles);
     }
 
     // roles not found
-    return false
+    return false;
   }
 
-  return true
-}
+  return true;
+};
 
 /**
  * Use requireAuth in your services to check that a user is logged in,
@@ -74,10 +70,10 @@ export const hasRole = ({ roles }) => {
  */
 export const requireAuth = ({ roles } = {}) => {
   if (!isAuthenticated()) {
-    throw new AuthenticationError("You don't have permission to do that.")
+    throw new AuthenticationError("You don't have permission to do that.");
   }
 
   if (!hasRole({ roles })) {
-    throw new ForbiddenError("You don't have access to do that.")
+    throw new ForbiddenError("You don't have access to do that.");
   }
-}
+};

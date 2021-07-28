@@ -1,4 +1,4 @@
-import { Link, routes } from '@redwoodjs/router'
+import { Link, routes } from "@redwoodjs/router";
 
 const FavoritesPage = () => {
   return (
@@ -12,7 +12,7 @@ const FavoritesPage = () => {
         <Link to={routes.favorites()}>Favorites</Link>`
       </p>
     </>
-  )
-}
+  );
+};
 
-export default FavoritesPage
+export default FavoritesPage;
