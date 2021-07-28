@@ -26,12 +26,13 @@ const Routes = () => {
       <Set wrap={DomainwatchLayout}>
         <Route path="/favorites" page={FavoritesPage} name="favorites" />
         <Route path="/search" page={SearchPage} name="search" />
+        <Route path="/search/{query}" page={SearchPage} name="searchQuery" />
         <Route path="/about" page={AboutPage} name="about" />
-        <Route notfound page={NotFoundPage} />
       </Set>
       <Set wrap={DomainwatchLayout} hideBranding>
         <Route path="/" page={HomePage} name="home" />
       </Set>
+      <Route notfound page={NotFoundPage} />
     </Router>
   );
 };

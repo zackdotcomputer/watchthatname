@@ -1,13 +1,15 @@
+import classnames from "classnames";
 import { Link, routes } from "@redwoodjs/router";
 import React from "react";
 import UserStateNavBit from "src/components/UserStateNavBit/UserStateNavBit";
 
 type DomainwatchLayoutProps = {
   children: React.ReactNode;
+  className?: string;
   hideBranding?: boolean;
 };
 
-const DomainwatchLayout = ({ children, hideBranding }: DomainwatchLayoutProps) => {
+const DomainwatchLayout = ({ children, hideBranding, className }: DomainwatchLayoutProps) => {
   return (
     <div className="min-h-screen flex flex-col justify-between">
       <header className="text-gray-600 body-font sticky">
@@ -44,7 +46,7 @@ const DomainwatchLayout = ({ children, hideBranding }: DomainwatchLayoutProps) =
           </nav>
         </div>
       </header>
-      <main className="container flex-grow mx-auto">{children}</main>
+      <main className={classnames("container flex-grow mx-auto", className)}>{children}</main>
       <footer className="text-gray-600 body-font">
         <div className="container px-5 py-8 mx-auto flex items-center sm:flex-row sm:space-x-2 flex-col">
           <p className="text-sm text-gray-500 sm:py-2 sm:mt-0 mt-4">
