@@ -1,3 +1,13 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+.link-style {
+  @apply border-b border-dashed border-current;
+  @apply transition-all opacity-70;
+  @apply cursor-pointer;
+}
+
+.link-style:hover {
+  @apply border-solid opacity-100;
+}
