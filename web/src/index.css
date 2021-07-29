@@ -11,3 +11,17 @@
 .link-style:hover {
   @apply border-solid opacity-100;
 }
+
+.smart-hover .yes-hover {
+  @apply hidden;
+}
+.smart-hover .no-hover {
+  @apply block;
+}
+
+.smart-hover:hover .yes-hover {
+  @apply block;
+}
+.smart-hover:hover .no-hover {
+  @apply hidden;
+}

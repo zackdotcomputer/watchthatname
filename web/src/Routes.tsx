@@ -15,14 +15,6 @@ import DomainwatchLayout from "./layouts/DomainwatchLayout/DomainwatchLayout";
 const Routes = () => {
   return (
     <Router>
-      <Private role="admin" unauthenticated="home">
-        <Set wrap={WishdomainsLayout}>
-          <Route path="/wishdomains/new" page={WishdomainNewWishdomainPage} name="newWishdomain" />
-          <Route path="/wishdomains/{id}/edit" page={WishdomainEditWishdomainPage} name="editWishdomain" />
-          <Route path="/wishdomains/{id}" page={WishdomainWishdomainPage} name="wishdomain" />
-          <Route path="/wishdomains" page={WishdomainWishdomainsPage} name="wishdomains" />
-        </Set>
-      </Private>
       <Set wrap={DomainwatchLayout}>
         <Route path="/favorites" page={FavoritesPage} name="favorites" />
         <Route path="/search" page={SearchPage} name="search" />
