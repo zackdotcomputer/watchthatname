@@ -1,19 +1,31 @@
 import type { Prisma } from "@prisma/client";
 import type { BeforeResolverSpecType } from "@redwoodjs/api";
+import type { User } from "@clerk/clerk-sdk-node";
 
 import { db } from "src/lib/db";
 import { requireAuth } from "src/lib/auth";
 
 // Used when the environment variable REDWOOD_SECURE_SERVICES=1
 export const beforeResolver = (rules: BeforeResolverSpecType) => {
-  rules.add(requireAuth);
+  rules.add(() => requireAuth());
 };
 
 export const wishdomains = () => {
-  return db.wishdomain.findMany();
+  const user = context.currentUser as User;
+  return db.wishdomain.findMany({
+    where: {
+      user: user.id
+    }
+  });
 };
 
-export const wishdomain = ({ id }: Prisma.WishdomainWhereUniqueInput) => {
+export const wishdomain = async ({ id }: Prisma.WishdomainWhereUniqueInput) => {
+  const result = await db.wishdomain.findUnique({
+    where: { id }
+  });
+
+  requireAuth({ id: result.user });
+
   return db.wishdomain.findUnique({
     where: { id }
   });
@@ -24,10 +36,11 @@ interface CreateWishdomainArgs {
 }
 
 export const createWishdomain = ({ input }: CreateWishdomainArgs) => {
-  requireAuth();
-  console.log(`Would be owned by ${JSON.stringify(context.currentUser)}`);
   return db.wishdomain.create({
-    data: input
+    data: {
+      ...input,
+      user: context.currentUser.id
+    }
   });
 };
 
@@ -35,14 +48,32 @@ interface UpdateWishdomainArgs extends Prisma.WishdomainWhereUniqueInput {
   input: Prisma.WishdomainUpdateInput;
 }
 
-export const updateWishdomain = ({ id, input }: UpdateWishdomainArgs) => {
+export const updateWishdomain = async ({ id, input }: UpdateWishdomainArgs) => {
+  const owner = (
+    await db.wishdomain.findUnique({
+      where: { id },
+      select: { user: true }
+    })
+  )?.user;
+
+  requireAuth({ id: owner });
+
   return db.wishdomain.update({
     data: input,
     where: { id }
   });
 };
 
-export const deleteWishdomain = ({ id }: Prisma.WishdomainWhereUniqueInput) => {
+export const deleteWishdomain = async ({ id }: Prisma.WishdomainWhereUniqueInput) => {
+  const owner = (
+    await db.wishdomain.findUnique({
+      where: { id },
+      select: { user: true }
+    })
+  )?.user;
+
+  requireAuth({ id: owner });
+
   return db.wishdomain.delete({
     where: { id }
   });

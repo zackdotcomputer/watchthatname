@@ -1,6 +1,7 @@
 export const schema = gql`
   type Wishdomain {
     id: String!
+    user: String!
     domain: String!
     createdAt: DateTime!
   }

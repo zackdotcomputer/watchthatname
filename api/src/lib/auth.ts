@@ -1,4 +1,4 @@
-import { AuthenticationError, ForbiddenError, parseJWT } from "@redwoodjs/api";
+import { AuthenticationError, ForbiddenError } from "@redwoodjs/api";
 
 /**
  * getCurrentUser returns the user information together with
@@ -12,8 +12,8 @@ import { AuthenticationError, ForbiddenError, parseJWT } from "@redwoodjs/api";
  *
  * @see https://github.com/redwoodjs/redwood/tree/main/packages/auth for examples
  */
-export const getCurrentUser = async (decoded, { _token, _type }, { _event, _context }) => {
-  return { ...decoded, roles: parseJWT({ decoded }).roles };
+export const getCurrentUser = async (decoded) => {
+  return decoded;
 };
 
 /**
@@ -33,7 +33,7 @@ export const isAuthenticated = () => {
  * @returns {boolean} - Returns true if the currentUser is logged in and assigned one of the given roles,
  * or when no roles are provided to check against. Otherwise returns false.
  */
-export const hasRole = ({ roles }) => {
+export const hasRole = ({ roles }: { roles: string | string[] }) => {
   if (!isAuthenticated()) {
     return false;
   }
@@ -68,12 +68,16 @@ export const hasRole = ({ roles }) => {
  *
  * @see https://github.com/redwoodjs/redwood/tree/main/packages/auth for examples
  */
-export const requireAuth = ({ roles } = {}) => {
+export const requireAuth = ({ roles, id }: { roles?: string | string[]; id?: string } = {}) => {
   if (!isAuthenticated()) {
     throw new AuthenticationError("You don't have permission to do that.");
   }
 
-  if (!hasRole({ roles })) {
+  if (roles && !hasRole({ roles })) {
     throw new ForbiddenError("You don't have access to do that.");
+  }
+
+  if (id && context.currentUser?.id !== id && !hasRole({ roles: ["admin"] })) {
+    throw new AuthenticationError("You don't have permission to do that.");
   }
 };

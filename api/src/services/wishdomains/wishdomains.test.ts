@@ -22,7 +22,7 @@ describe("wishdomains", () => {
 
   scenario("creates a wishdomain", async () => {
     const result = await createWishdomain({
-      input: { domain: "String" }
+      input: { domain: "String", desiredDomain: "Desired", user: "abc123" }
     });
 
     expect(result.domain).toEqual("String");

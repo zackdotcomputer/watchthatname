@@ -3,7 +3,7 @@ import { Link, routes } from "@redwoodjs/router";
 const SearchPage = () => {
   return (
     <>
-      <h1>SearchPage</h1>
+      <h1>Search Results</h1>
       <p>
         Find me in <code>./web/src/pages/SearchPage/SearchPage.tsx</code>
       </p>

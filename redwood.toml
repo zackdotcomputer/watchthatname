@@ -11,7 +11,7 @@
   includeEnvironmentVariables = ['CLERK_FRONTEND_API_URL']
 [api]
   port = 8911
-  includeEnvironmentVariables = ['CLERK_API_KEY']
+  includeEnvironmentVariables = ['CLERK_API_KEY', 'GODADDY_KEY', 'GODADDY_SECRET']
 [browser]
   open = true
 [experimental]
