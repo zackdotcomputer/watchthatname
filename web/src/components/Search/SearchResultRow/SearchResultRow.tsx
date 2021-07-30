@@ -38,7 +38,7 @@ const SearchResultRow = ({ item, onFavorite, buyDestination, destination }: Prop
       className="w-full h-12 flex flex-row hover:bg-blue-50 transition-colors items-center space-x-2 odd:bg-gray-50 px-4"
     >
       {destination ? (
-        <Link to={destination}>
+        <Link to={destination} className="flex-grow">
           <SearchResultTitle item={item} destination={destination} />
         </Link>
       ) : (
