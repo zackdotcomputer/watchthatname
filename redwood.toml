@@ -8,7 +8,7 @@
 [web]
   port = 8910
   apiProxyPath = "/api"
-  includeEnvironmentVariables = ['CLERK_FRONTEND_API_URL']
+  includeEnvironmentVariables = ['CLERK_FRONTEND_API_URL', 'PLAUSIBLE_DOMAIN']
 [api]
   port = 8911
   includeEnvironmentVariables = ['CLERK_API_KEY', 'GODADDY_KEY', 'GODADDY_SECRET']

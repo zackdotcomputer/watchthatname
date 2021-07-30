@@ -2,7 +2,6 @@ import { Form, SearchField, Submit } from "@redwoodjs/forms";
 import { navigate, routes } from "@redwoodjs/router";
 import React from "react";
 import { Head, MetaTags } from "@redwoodjs/web";
-import { useApolloClient } from "@apollo/client";
 
 const HomePage = () => {
   const onSubmit = (data) => {
@@ -12,7 +11,13 @@ const HomePage = () => {
   return (
     <>
       <Head>
-        <script defer data-domain="watchthatname.com" src="https://plausible.io/js/plausible.js" />
+        {process.env.PLAUSIBLE_DOMAIN && (
+          <script
+            defer
+            data-domain={process.env.PLAUSIBLE_DOMAIN}
+            src="https://plausible.io/js/plausible.js"
+          />
+        )}
       </Head>
       <MetaTags
         title="Watch That Name - Domain Wishlist"
