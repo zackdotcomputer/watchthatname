@@ -13,6 +13,7 @@
     ]
   },
   "dependencies": {
+    "@apollo/client": "^3.3.21",
     "@clerk/clerk-react": "^1.15.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-brands-svg-icons": "^5.15.3",

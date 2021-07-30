@@ -1,12 +1,13 @@
 import { AuthProvider } from "@redwoodjs/auth";
 import { ClerkProvider, ClerkLoaded, useClerk } from "@clerk/clerk-react";
 import { FatalErrorBoundary } from "@redwoodjs/web";
-import { RedwoodApolloProvider } from "@redwoodjs/web/apollo";
 import FatalErrorPage from "src/pages/FatalErrorPage";
 import Routes from "src/Routes";
 
 import "./index.css";
 import "./scaffold.css";
+import { DWApolloProvider } from "./DWApolloProvider";
+import { TypePolicy } from "./GQLTypePolicy";
 
 // You can set user roles in a "roles" array on the public metadata in Clerk.
 // Also, you need to add two env variables: CLERK_FRONTEND_API_URL for web and
@@ -37,9 +38,13 @@ const App = () => (
   <FatalErrorBoundary page={FatalErrorPage}>
     <ClerkAuthProvider>
       <AuthProvider client={clerk} type="clerk">
-        <RedwoodApolloProvider>
+        <DWApolloProvider
+          graphQLClientConfig={{
+            cacheConfig: TypePolicy
+          }}
+        >
           <Routes />
-        </RedwoodApolloProvider>
+        </DWApolloProvider>
       </AuthProvider>
     </ClerkAuthProvider>
   </FatalErrorBoundary>

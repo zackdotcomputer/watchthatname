@@ -15,19 +15,25 @@ export const beforeResolver = (rules: BeforeResolverSpecType) => {
   rules.skip({ only: ["search"] });
 };
 
-export const search = async ({ input, page = 1 }: { input: SearchQueryInput; page?: number }) => {
+export const search = async ({
+  input,
+  offset = 0,
+  limit = DOMAINS_PER_PAGE
+}: {
+  input: SearchQueryInput;
+  offset?: number;
+  limit?: number;
+}) => {
   const allDomains = buildDomains(input);
 
-  const selection = allDomains
-    .slice((page - 1) * DOMAINS_PER_PAGE, page * DOMAINS_PER_PAGE)
-    .map((d) => {
-      // We can only search for the root domain, which will always be the last two chords.
-      // E.G. tw.itter.com -> searchable is itter.com
-      return {
-        original: d,
-        searchable: (d.length > 2 ? d.slice(-2) : d).join(".")
-      };
-    });
+  const selection = allDomains.slice(offset, offset + limit).map((d) => {
+    // We can only search for the root domain, which will always be the last two chords.
+    // E.G. tw.itter.com -> searchable is itter.com
+    return {
+      original: d,
+      searchable: (d.length > 2 ? d.slice(-2) : d).join(".")
+    };
+  });
   const searchables = selection.map((s) => s.searchable);
 
   const [allResults, allFavorited] = await Promise.all([
@@ -52,6 +58,48 @@ export const search = async ({ input, page = 1 }: { input: SearchQueryInput; pag
             price: result.price
           },
           favorited: allFavorited?.some((f) => result.domain === f)
+        }
+      ];
+    }
+  });
+};
+
+export const favorites = async ({
+  offset = 0,
+  limit = DOMAINS_PER_PAGE
+}: {
+  offset?: number;
+  limit?: number;
+}) => {
+  const favorites = await db.wishdomain.findMany({
+    where: {
+      user: context.currentUser.id
+    },
+    take: limit,
+    skip: offset
+  });
+
+  const searchables = favorites.map((s) => s.domain);
+
+  const allResults = await getSearchResults(searchables);
+
+  return favorites.flatMap((s): Domain[] => {
+    const result = allResults.find((r) => r.domain === s.domain);
+    if (!result) {
+      return [];
+    } else {
+      return [
+        {
+          id: result.domain,
+          domain: result.domain,
+          desiredDomain: s.desiredDomain,
+          available: result.available ?? true,
+          definitive: result.definitive ?? false,
+          price: result.price && {
+            currency: result.currency,
+            price: result.price
+          },
+          favorited: true
         }
       ];
     }

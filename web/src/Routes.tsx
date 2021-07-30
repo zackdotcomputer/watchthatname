@@ -9,14 +9,15 @@
 
 import { Router, Route, Set, Private } from "@redwoodjs/router";
 import React from "react";
-import WishdomainsLayout from "src/layouts/WishdomainsLayout";
 import DomainwatchLayout from "./layouts/DomainwatchLayout/DomainwatchLayout";
 
 const Routes = () => {
   return (
     <Router>
       <Set wrap={DomainwatchLayout}>
-        <Route path="/favorites" page={FavoritesPage} name="favorites" />
+        <Private unauthenticated="/">
+          <Route path="/favorites" page={FavoritesPage} name="favorites" />
+        </Private>
         <Route path="/search" page={SearchPage} name="search" />
         <Route path="/search/{query}" page={SearchPage} name="searchQuery" />
         <Route path="/about" page={AboutPage} name="about" />

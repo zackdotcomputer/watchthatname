@@ -1,9 +1,9 @@
 const AboutPage = () => {
   return (
     <>
-      <h1>About Domain Watch</h1>
+      <h1>About Watch That Name</h1>
       <p>
-        Domain Watch was made by{" "}
+        Watch That Name was made by{" "}
         <a href="https://zack.computer" rel="noopener noreferrer" className="link-style">
           Zack Sheppard
         </a>{" "}
@@ -16,7 +16,7 @@ const AboutPage = () => {
       <p>
         It is an open source project under the MIT license. You can view{" "}
         <a
-          href="https://github.com/zackdotcomputer/domainwatch"
+          href="https://github.com/zackdotcomputer/watchthatname"
           rel="noopener noreferrer"
           className="link-style"
         >

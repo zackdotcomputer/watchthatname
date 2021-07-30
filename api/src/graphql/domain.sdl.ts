@@ -18,7 +18,8 @@ export const schema = gql`
   }
 
   type Query {
-    search(input: SearchQueryInput!, page: Int): [Domain!]!
+    search(input: SearchQueryInput!, offset: Int, limit: Int): [Domain!]!
+    favorites(offset: Int, limit: Int): [Domain!]!
   }
 
   type Mutation {

@@ -1,17 +1,13 @@
-import { Link, routes } from "@redwoodjs/router";
+import AllFavoritesCell from "src/components/AllFavoritesCell";
 
 const FavoritesPage = () => {
   return (
-    <>
-      <h1>FavoritesPage</h1>
-      <p>
-        Find me in <code>./web/src/pages/FavoritesPage/FavoritesPage.tsx</code>
-      </p>
-      <p>
-        My default route is named <code>favorites</code>, link to me with `
-        <Link to={routes.favorites()}>Favorites</Link>`
-      </p>
-    </>
+    <div className="flex flex-col justify-between flex-grow h-full">
+      <section>
+        <h1 className="text-center text-2xl font-bold mt-4 mb-6">Your Favorite Domains</h1>
+        <AllFavoritesCell />
+      </section>
+    </div>
   );
 };
 

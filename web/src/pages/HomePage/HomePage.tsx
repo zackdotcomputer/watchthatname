@@ -18,10 +18,10 @@ const HomePage = () => {
           />
           <div className="w-full md:w-2/3 flex flex-col mb-4 items-center text-center">
             <h1 className="title-font sm:text-8xl text-5xl mb-4 font-medium text-gray-900">
-              Domain Watch
+              Watch That Name
             </h1>
             <p className="mb-8 leading-relaxed text-2xl">
-              Find great domains, remember them privately,
+              Find great domain names, remember them privately,
               <br />
               buy them when you&rsquo;re ready to <strong>actually</strong> build.
             </p>
