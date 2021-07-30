@@ -61,7 +61,11 @@ const DomainwatchLayout = ({ children, hideBranding, className }: DomainwatchLay
             </a>{" "}
             (England 13120175)
           </p>
-          <p>&bull;</p>
+          <p className="hidden sm:block">&bull;</p>
+          <p className="text-sm text-gray-500 sm:py-2 sm:mt-0 mt-4">
+            This site uses only necessary cookies
+          </p>
+          <p className="hidden sm:block">&bull;</p>
           <p className="text-sm text-gray-500 sm:py-2 sm:mt-0 mt-4">
             Binoculars Illustration by{" "}
             <a
@@ -78,6 +82,16 @@ const DomainwatchLayout = ({ children, hideBranding, className }: DomainwatchLay
               href="https://icons8.com/illustrations"
             >
               Ouch!
+            </a>
+          </p>
+          <p className="hidden sm:block">&bull;</p>
+          <p className="text-sm text-gray-500 sm:py-2 sm:mt-0 mt-4">
+            <a href="/legal/terms.pdf" className="link-style" target="_blank">
+              Terms
+            </a>{" "}
+            &amp;{" "}
+            <a href="/legal/privacy.pdf" className="link-style" target="_blank">
+              Privacy Policy
             </a>
           </p>
         </div>

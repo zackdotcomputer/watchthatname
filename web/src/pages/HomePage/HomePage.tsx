@@ -1,6 +1,8 @@
 import { Form, SearchField, Submit } from "@redwoodjs/forms";
 import { navigate, routes } from "@redwoodjs/router";
 import React from "react";
+import { Head, MetaTags } from "@redwoodjs/web";
+import { useApolloClient } from "@apollo/client";
 
 const HomePage = () => {
   const onSubmit = (data) => {
@@ -9,6 +11,18 @@ const HomePage = () => {
 
   return (
     <>
+      <Head>
+        <script defer data-domain="watchthatname.com" src="https://plausible.io/js/plausible.js" />
+      </Head>
+      <MetaTags
+        title="Watch That Name - Domain Wishlist"
+        description="Keep your own, private list of domain names you're interested in buying one day."
+      >
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="manifest" href="/site.webmanifest" />
+      </MetaTags>
       <section className="text-gray-600 body-font">
         <div className="container mx-auto flex flex-col px-5 py-16 justify-center items-center">
           <img

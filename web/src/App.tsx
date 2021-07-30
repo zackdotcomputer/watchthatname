@@ -1,6 +1,6 @@
 import { AuthProvider } from "@redwoodjs/auth";
 import { ClerkProvider, ClerkLoaded, useClerk } from "@clerk/clerk-react";
-import { FatalErrorBoundary } from "@redwoodjs/web";
+import { FatalErrorBoundary, RedwoodProvider } from "@redwoodjs/web";
 import FatalErrorPage from "src/pages/FatalErrorPage";
 import Routes from "src/Routes";
 
@@ -37,15 +37,17 @@ const ClerkAuthProvider = ({ children }) => {
 const App = () => (
   <FatalErrorBoundary page={FatalErrorPage}>
     <ClerkAuthProvider>
-      <AuthProvider client={clerk} type="clerk">
-        <DWApolloProvider
-          graphQLClientConfig={{
-            cacheConfig: TypePolicy
-          }}
-        >
-          <Routes />
-        </DWApolloProvider>
-      </AuthProvider>
+      <RedwoodProvider>
+        <AuthProvider client={clerk} type="clerk">
+          <DWApolloProvider
+            graphQLClientConfig={{
+              cacheConfig: TypePolicy
+            }}
+          >
+            <Routes />
+          </DWApolloProvider>
+        </AuthProvider>
+      </RedwoodProvider>
     </ClerkAuthProvider>
   </FatalErrorBoundary>
 );
