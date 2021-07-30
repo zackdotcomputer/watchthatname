@@ -8,7 +8,7 @@
     ]
   },
   "devDependencies": {
-    "@redwoodjs/core": "^0.35.1",
+    "@redwoodjs/core": "0.35.3-canary.66",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
     "prettier": "^2.3.2"
@@ -20,5 +20,23 @@
   "engines": {
     "node": "14.x",
     "yarn": "1.x"
+  },
+  "resolutions": {
+    "@redwoodjs/api": "0.35.3-canary.66",
+    "@redwoodjs/api-server": "0.35.3-canary.66",
+    "@redwoodjs/auth": "0.35.3-canary.66",
+    "@redwoodjs/cli": "0.35.3-canary.66",
+    "@redwoodjs/core": "0.35.3-canary.66",
+    "@redwoodjs/dev-server": "0.35.3-canary.48",
+    "@redwoodjs/eslint-config": "0.35.3-canary.66",
+    "@redwoodjs/forms": "0.35.3-canary.66",
+    "@redwoodjs/graphql-server": "0.35.3-canary.66",
+    "@redwoodjs/history": "0.35.3-canary.38",
+    "@redwoodjs/internal": "0.35.3-canary.66",
+    "@redwoodjs/prerender": "0.35.3-canary.66",
+    "@redwoodjs/router": "0.35.3-canary.66",
+    "@redwoodjs/structure": "0.35.3-canary.66",
+    "@redwoodjs/testing": "0.35.3-canary.66",
+    "@redwoodjs/web": "0.35.3-canary.66"
   }
 }

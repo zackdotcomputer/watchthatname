@@ -1,15 +1,28 @@
-import { Link, routes } from "@redwoodjs/router";
-
 const AboutPage = () => {
   return (
     <>
-      <h1>AboutPage</h1>
+      <h1>About Watch That Name</h1>
       <p>
-        Find me in <code>./web/src/pages/AboutPage/AboutPage.tsx</code>
+        Watch That Name was made by{" "}
+        <a href="https://zack.computer" rel="noopener noreferrer" className="link-style">
+          Zack Sheppard
+        </a>{" "}
+        as{" "}
+        <a href="https://traveler.dev" rel="noopener noreferrer" className="link-style">
+          Traveler Dev Ltd
+        </a>{" "}
+        (an English company, number 13120175).
       </p>
       <p>
-        My default route is named <code>about</code>, link to me with `
-        <Link to={routes.about()}>About</Link>`
+        It is an open source project under the MIT license. You can view{" "}
+        <a
+          href="https://github.com/zackdotcomputer/watchthatname"
+          rel="noopener noreferrer"
+          className="link-style"
+        >
+          the source for it here
+        </a>
+        .
       </p>
     </>
   );

@@ -7,23 +7,25 @@
 // 'src/pages/HomePage/HomePage.js'         -> HomePage
 // 'src/pages/Admin/BooksPage/BooksPage.js' -> AdminBooksPage
 
-import { Router, Route, Set } from '@redwoodjs/router'
-import WishdomainsLayout from 'src/layouts/WishdomainsLayout';
+import { Router, Route, Set, Private } from "@redwoodjs/router";
+import React from "react";
 import DomainwatchLayout from "./layouts/DomainwatchLayout/DomainwatchLayout";
 
 const Routes = () => {
   return (
     <Router>
-      <Set wrap={WishdomainsLayout}>
-        <Route path="/wishdomains/new" page={WishdomainNewWishdomainPage} name="newWishdomain" />
-        <Route path="/wishdomains/{id}/edit" page={WishdomainEditWishdomainPage} name="editWishdomain" />
-        <Route path="/wishdomains/{id}" page={WishdomainWishdomainPage} name="wishdomain" />
-        <Route path="/wishdomains" page={WishdomainWishdomainsPage} name="wishdomains" />
-      </Set>
       <Set wrap={DomainwatchLayout}>
+        <Private unauthenticated="/">
+          <Route path="/favorites" page={FavoritesPage} name="favorites" />
+        </Private>
+        <Route path="/domain/{domain}" page={DomainDetailsPage} name="domainDetails" />
+        <Route path="/search" page={SearchPage} name="search" />
+        <Route path="/search/{query}" page={SearchPage} name="searchQuery" />
         <Route path="/about" page={AboutPage} name="about" />
       </Set>
-      <Route path="/" page={HomePage} name="home" />
+      <Set wrap={DomainwatchLayout} hideBranding>
+        <Route path="/" page={HomePage} name="home" />
+      </Set>
       <Route notfound page={NotFoundPage} />
     </Router>
   );
