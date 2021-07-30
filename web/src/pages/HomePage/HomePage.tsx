@@ -4,7 +4,7 @@ import React from "react";
 
 const HomePage = () => {
   const onSubmit = (data) => {
-    navigate(routes.searchQuery({ query: data.query ?? "" }));
+    navigate(routes.searchQuery({ query: encodeURIComponent(data.query ?? "") }));
   };
 
   return (

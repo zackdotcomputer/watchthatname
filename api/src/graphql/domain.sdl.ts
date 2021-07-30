@@ -10,6 +10,8 @@ export const schema = gql`
     price: DomainPrice
 
     favorited: Boolean
+
+    whois: String
   }
 
   type DomainPrice {
@@ -20,6 +22,7 @@ export const schema = gql`
   type Query {
     search(input: SearchQueryInput!, offset: Int, limit: Int): [Domain!]!
     favorites(offset: Int, limit: Int): [Domain!]!
+    findOne(domain: String!): Domain
   }
 
   type Mutation {

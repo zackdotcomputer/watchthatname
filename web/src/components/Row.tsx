@@ -1,9 +1,9 @@
 import classNames from "classnames";
-import React, { ForwardedRef, PropsWithChildren } from "react";
+import React, { ForwardedRef, ReactNode } from "react";
 
 const Row = React.forwardRef(
   (
-    { className, children }: PropsWithChildren<{ className?: string }>,
+    { className, children }: { className?: string; children?: ReactNode },
     ref: ForwardedRef<HTMLDivElement>
   ) => {
     const rowClasses =

@@ -18,6 +18,7 @@ const Routes = () => {
         <Private unauthenticated="/">
           <Route path="/favorites" page={FavoritesPage} name="favorites" />
         </Private>
+        <Route path="/domain/{domain}" page={DomainDetailsPage} name="domainDetails" />
         <Route path="/search" page={SearchPage} name="search" />
         <Route path="/search/{query}" page={SearchPage} name="searchQuery" />
         <Route path="/about" page={AboutPage} name="about" />

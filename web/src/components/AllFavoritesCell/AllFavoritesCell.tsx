@@ -145,6 +145,9 @@ export const Success = (favoriteResults: CellSuccessProps<FavoritesQuery>) => {
           <SearchResultRow
             key={item.domain}
             item={item}
+            destination={routes.domainDetails({
+              domain: encodeURIComponent(item.desiredDomain ?? item.domain)
+            })}
             onFavorite={onAttemptFavorite}
             buyDestination={buyDestination}
           />
@@ -157,7 +160,7 @@ export const Success = (favoriteResults: CellSuccessProps<FavoritesQuery>) => {
           onLoadMore={doFetchMore}
         />
       ) : (
-        <Row className="justiyf-center italic">
+        <Row className="justify-center italic">
           That&rsquo;s it!{" "}
           <Link to={routes.search()} className="link-style ml-2">
             Go find some more...

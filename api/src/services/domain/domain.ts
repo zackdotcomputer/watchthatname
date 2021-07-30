@@ -1,10 +1,12 @@
-import type { BeforeResolverSpecType } from "@redwoodjs/api";
+import { ApolloError, BeforeResolverSpecType } from "@redwoodjs/api";
 
 import { db } from "src/lib/db";
 import { requireAuth } from "src/lib/auth";
 import type { Domain, SearchQueryInput, SetWishInput } from "types/graphql";
 import { Availability, availabilityForDomains } from "src/lib/godaddy";
-import { buildDomains } from "src/lib/buildDomains";
+import { buildDomains, splitName } from "src/lib/buildDomains";
+import whois from "whois-json";
+import { logger } from "src/lib/logger";
 
 const DOMAINS_PER_PAGE = 20;
 const CACHE_TTL = 12 * 60 * 60 * 1000; // 12 hours in milliseconds
@@ -62,6 +64,49 @@ export const search = async ({
       ];
     }
   });
+};
+
+export const findOne = async ({ domain }: { domain: string }) => {
+  const { desired, valid } = splitName(domain);
+
+  if (!valid) {
+    throw new ApolloError("Invalid Domain", "404");
+  }
+
+  const [results, favorited] = await Promise.all([
+    getSearchResults([valid]),
+    getFavorited([valid])
+  ]);
+
+  const result = (results?.length ?? 0) > 0 ? results[0] : undefined;
+
+  if (!result) {
+    return null;
+  } else {
+    let whoisResult: string | null = null;
+
+    try {
+      if (!result.available) {
+        whoisResult = JSON.stringify(await whois(valid));
+      }
+    } catch (e) {
+      logger.warn("Whois failed", e);
+    }
+
+    return {
+      id: valid,
+      domain: valid,
+      desiredDomain: desired,
+      available: result.available ?? true,
+      definitive: result.definitive ?? false,
+      price: result.price && {
+        currency: result.currency,
+        price: result.price
+      },
+      favorited: (favorited?.length ?? 0) > 0,
+      whois: whoisResult
+    };
+  }
 };
 
 export const favorites = async ({

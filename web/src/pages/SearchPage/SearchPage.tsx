@@ -1,4 +1,3 @@
-import { navigate, routes } from "@redwoodjs/router";
 import React, { useMemo } from "react";
 import SearchForm from "src/components/Search/SearchForm/SearchForm";
 import SearchResultsCell from "src/components/Search/SearchResultsCell";

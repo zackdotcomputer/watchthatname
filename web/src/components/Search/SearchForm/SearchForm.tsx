@@ -3,7 +3,7 @@ import { navigate, routes } from "@redwoodjs/router";
 
 export default function SearchForm({ initialValue }: { initialValue?: string }) {
   const onSubmit = (data) => {
-    navigate(routes.searchQuery({ query: data.query ?? "" }));
+    navigate(routes.searchQuery({ query: encodeURIComponent(data.query ?? "") }));
   };
 
   return (

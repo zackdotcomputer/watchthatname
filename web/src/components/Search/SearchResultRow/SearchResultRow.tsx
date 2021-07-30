@@ -1,4 +1,5 @@
 import { Link } from "@redwoodjs/router";
+import classNames from "classnames";
 import React from "react";
 import { Domain } from "types/graphql";
 import FavoriteButton from "./FavoriteButton";
@@ -22,7 +23,7 @@ const SearchResultRow = ({ item, onFavorite, buyDestination, destination }: Prop
       className="w-full h-12 flex flex-row hover:bg-blue-50 transition-colors items-center space-x-2 odd:bg-gray-50 px-4"
     >
       <div className="flex-grow">
-        <span className="link-style">
+        <span className={classNames({ "link-style": destination })}>
           {unbolded}
           <strong>{item.domain}</strong>
         </span>

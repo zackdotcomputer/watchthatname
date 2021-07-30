@@ -4,6 +4,28 @@ import { logger } from "src/lib/logger";
 
 const DOMAIN_REGEX = /[^a-zA-Z0-9\-]/;
 
+export const splitName = (domain: string): { desired: string; valid: null | string } => {
+  const domainparts = domain.split(".").filter((s) => s.length > 0);
+
+  let validDomain = null;
+  if (domainparts.length > 1) {
+    const singleBarrel = domainparts[domainparts.length - 1].toLowerCase();
+    const doubleBarrel =
+      domainparts.length > 2 ? domainparts.slice(-2).join(".").toLowerCase() : null;
+
+    if (doubleBarrel && tlds.some((tld) => tld.name === doubleBarrel)) {
+      validDomain = domainparts.slice(-3).join(".");
+    } else if (singleBarrel && tlds.some((tld) => tld.name === singleBarrel)) {
+      validDomain = domainparts.slice(-2).join(".");
+    }
+  }
+
+  return {
+    desired: domain,
+    valid: validDomain ?? null
+  };
+};
+
 export const buildDomains = ({ query, noCountryCodes }: SearchQueryInput): string[][] => {
   logger.trace("Building domains for ", query);
 

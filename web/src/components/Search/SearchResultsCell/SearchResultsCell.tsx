@@ -5,6 +5,8 @@ import { useAuth } from "@redwoodjs/auth";
 import SearchResultRow from "../SearchResultRow/SearchResultRow";
 import LoadMoreRow from "../../LoadMoreRow";
 import useSetFavoriteMutation from "src/useSetFavoriteMutation";
+import Row from "src/components/Row";
+import { routes } from "@redwoodjs/router";
 
 const RESULTS_PER_PAGE = 20;
 
@@ -36,14 +38,12 @@ export const Loading = () => (
 
 export const Empty = () => (
   <article className="flex flex-col items-stretch justify-start max-w-xl mx-auto">
-    <div className="w-full h-12 flex flex-row transition-colors items-center space-x-2 odd:bg-gray-50 px-4 justify-center">
-      No Results Found.
-    </div>
+    <Row className="justify-center">No Results Found.</Row>
   </article>
 );
 
 export const Failure = ({ error }: CellFailureProps) => (
-  <div style={{ color: "red" }}>Error: {error.message}</div>
+  <Row className="justify-center text-red-700">Error! {error.message}</Row>
 );
 
 export const Success = (searchResults: CellSuccessProps<SearchResultsQuery>) => {
@@ -144,6 +144,9 @@ export const Success = (searchResults: CellSuccessProps<SearchResultsQuery>) => 
         return (
           <SearchResultRow
             key={item.domain}
+            destination={routes.domainDetails({
+              domain: encodeURIComponent(item.desiredDomain ?? item.domain)
+            })}
             item={item}
             onFavorite={onAttemptFavorite}
             buyDestination={buyDestination}
