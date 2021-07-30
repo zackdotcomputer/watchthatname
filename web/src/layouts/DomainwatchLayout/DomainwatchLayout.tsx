@@ -48,7 +48,7 @@ const DomainwatchLayout = ({ children, hideBranding, className }: DomainwatchLay
       </header>
       <main className={classnames("container flex-grow mx-auto", className)}>{children}</main>
       <footer className="text-gray-600 body-font">
-        <div className="container px-5 py-8 mx-auto flex items-center sm:flex-row sm:space-x-2 flex-col">
+        <div className="container px-5 py-8 mx-auto flex items-center justify-center text-center sm:flex-row sm:space-x-2 flex-col">
           <p className="text-sm text-gray-500 sm:py-2 sm:mt-0 mt-4">
             Made 2021 by
             <a
