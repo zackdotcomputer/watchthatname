@@ -2,11 +2,14 @@ import { faCreativeCommonsNc } from "@fortawesome/free-brands-svg-icons";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
+import { usePlausible } from "src/PlausibleProvider";
 import { Domain } from "types/graphql";
 
 type Props = Pick<Domain, "available" | "price"> & { destination?: string };
 
 export default function ResultActionButton({ available, price, destination }: Props) {
+  const { trackEvent } = usePlausible();
+
   if (available) {
     return (
       <>
@@ -15,6 +18,7 @@ export default function ResultActionButton({ available, price, destination }: Pr
           rel="nofollow noopener noreferrer"
           target="_blank"
           className="hover:text-blue-700 transition-colors"
+          onClick={() => trackEvent("go-to-store")}
         >
           <span className="text-sm font-semibold mr-2 opacity-80">
             {price.currency === "USD" && "$"}

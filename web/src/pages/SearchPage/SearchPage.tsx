@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
 import SearchForm from "src/components/Search/SearchForm/SearchForm";
 import SearchResultsCell from "src/components/Search/SearchResultsCell";
+import { useTrackPageview } from "src/PlausibleProvider";
 
 type SearchPageProps = {
   query?: string;
@@ -8,6 +9,7 @@ type SearchPageProps = {
 
 const SearchPage = ({ query }: SearchPageProps) => {
   const decoded = useMemo(() => query && decodeURIComponent(query), [query]);
+  useTrackPageview("/search/*");
 
   return (
     <>

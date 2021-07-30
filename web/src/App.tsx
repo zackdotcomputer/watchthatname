@@ -3,6 +3,7 @@ import { ClerkProvider, ClerkLoaded, useClerk } from "@clerk/clerk-react";
 import { FatalErrorBoundary, RedwoodProvider } from "@redwoodjs/web";
 import FatalErrorPage from "src/pages/FatalErrorPage";
 import Routes from "src/Routes";
+import { PlausibleProvider } from "./PlausibleProvider";
 
 import "./index.css";
 import "./scaffold.css";
@@ -30,15 +31,17 @@ const AppWrapped = () => {
 
   return (
     <RedwoodProvider>
-      <AuthProvider client={clerk} type="clerk">
-        <DWApolloProvider
-          graphQLClientConfig={{
-            cacheConfig: TypePolicy
-          }}
-        >
-          <Routes />
-        </DWApolloProvider>
-      </AuthProvider>
+      <PlausibleProvider>
+        <AuthProvider client={clerk} type="clerk">
+          <DWApolloProvider
+            graphQLClientConfig={{
+              cacheConfig: TypePolicy
+            }}
+          >
+            <Routes />
+          </DWApolloProvider>
+        </AuthProvider>
+      </PlausibleProvider>
     </RedwoodProvider>
   );
 };

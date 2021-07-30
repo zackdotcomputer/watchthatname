@@ -1,4 +1,8 @@
+import { useTrackPageview } from "src/PlausibleProvider";
+
 const AboutPage = () => {
+  useTrackPageview();
+
   return (
     <>
       <h1>About Watch That Name</h1>

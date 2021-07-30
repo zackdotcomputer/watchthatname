@@ -1,4 +1,5 @@
 import classnames from "classnames";
+import { MetaTags } from "@redwoodjs/web";
 import { Link, routes } from "@redwoodjs/router";
 import React from "react";
 import UserStateNavBit from "src/components/UserStateNavBit/UserStateNavBit";
@@ -12,6 +13,15 @@ type DomainwatchLayoutProps = {
 const DomainwatchLayout = ({ children, hideBranding, className }: DomainwatchLayoutProps) => {
   return (
     <div className="min-h-screen flex flex-col justify-between">
+      <MetaTags
+        title="Watch That Name - Domain Wishlist"
+        description="Keep your own, private list of domain names you're interested in buying one day."
+      >
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="manifest" href="/site.webmanifest" />
+      </MetaTags>
       <header className="text-gray-600 body-font sticky">
         <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
           {hideBranding ? (
