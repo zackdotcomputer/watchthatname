@@ -9,16 +9,6 @@ import "./scaffold.css";
 import { DWApolloProvider } from "./DWApolloProvider";
 import { TypePolicy } from "./GQLTypePolicy";
 
-// You can set user roles in a "roles" array on the public metadata in Clerk.
-// Also, you need to add two env variables: CLERK_FRONTEND_API_URL for web and
-// CLERK_API_KEY for api, with the frontend api host and api key, respectively,
-// both from your Clerk.dev dashboard.
-let clerk;
-const ClerkAuthConsumer = ({ children }) => {
-  clerk = useClerk();
-  return React.cloneElement(children, { client: clerk });
-};
-
 const ClerkAuthProvider = ({ children }) => {
   const frontendApi = process.env.CLERK_FRONTEND_API_URL;
   if (!frontendApi) {
@@ -27,27 +17,36 @@ const ClerkAuthProvider = ({ children }) => {
 
   return (
     <ClerkProvider frontendApi={frontendApi}>
-      <ClerkLoaded>
-        <ClerkAuthConsumer>{children}</ClerkAuthConsumer>
-      </ClerkLoaded>
+      <ClerkLoaded>{children}</ClerkLoaded>
     </ClerkProvider>
+  );
+};
+
+const AppWrapped = () => {
+  const clerk = useClerk();
+  if (!clerk) {
+    console.error("Clerk was not loaded");
+  }
+
+  return (
+    <RedwoodProvider>
+      <AuthProvider client={clerk} type="clerk">
+        <DWApolloProvider
+          graphQLClientConfig={{
+            cacheConfig: TypePolicy
+          }}
+        >
+          <Routes />
+        </DWApolloProvider>
+      </AuthProvider>
+    </RedwoodProvider>
   );
 };
 
 const App = () => (
   <FatalErrorBoundary page={FatalErrorPage}>
     <ClerkAuthProvider>
-      <RedwoodProvider>
-        <AuthProvider client={clerk} type="clerk">
-          <DWApolloProvider
-            graphQLClientConfig={{
-              cacheConfig: TypePolicy
-            }}
-          >
-            <Routes />
-          </DWApolloProvider>
-        </AuthProvider>
-      </RedwoodProvider>
+      <AppWrapped />
     </ClerkAuthProvider>
   </FatalErrorBoundary>
 );
