@@ -30,7 +30,7 @@ const AppWrapped = () => {
   }
 
   return (
-    <RedwoodProvider>
+    <RedwoodProvider titleTemplate="%AppTitle · %PageTitle">
       <PlausibleProvider>
         <AuthProvider client={clerk} type="clerk">
           <DWApolloProvider

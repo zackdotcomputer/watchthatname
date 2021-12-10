@@ -4,7 +4,8 @@
   "private": true,
   "dependencies": {
     "@clerk/clerk-sdk-node": "^0.5.0",
-    "@redwoodjs/api": "^0.35.1",
+    "@redwoodjs/api": "^0.39.4",
+    "@redwoodjs/graphql-server": "^0.39.4",
     "axios": "^0.21.1",
     "whois-json": "^2.0.4"
   }
