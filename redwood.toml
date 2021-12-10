@@ -7,7 +7,7 @@
 
 [web]
   port = 8910
-  apiProxyPath = "/api"
+  apiUrl = "/api"
   title = "Watch That Name"
   includeEnvironmentVariables = ['CLERK_FRONTEND_API_URL', 'PLAUSIBLE_DOMAIN']
 [api]

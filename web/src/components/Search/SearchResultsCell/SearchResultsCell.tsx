@@ -155,7 +155,7 @@ export const Success = (searchResults: CellSuccessProps<SearchResultsQuery>) => 
       })}
       {hasMore && (
         <LoadMoreRow
-          isLoading={moreLoading || searchResults.loading}
+          isLoading={moreLoading}
           ref={loaderRef}
           onLoadMore={doFetchMore}
         />

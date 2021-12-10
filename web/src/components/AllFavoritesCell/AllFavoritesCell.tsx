@@ -155,7 +155,7 @@ export const Success = (favoriteResults: CellSuccessProps<FavoritesQuery>) => {
       })}
       {hasMore ? (
         <LoadMoreRow
-          isLoading={moreLoading || favoriteResults.loading}
+          isLoading={moreLoading}
           ref={loaderRef}
           onLoadMore={doFetchMore}
         />

@@ -6,7 +6,6 @@ module.exports = {
   embeddedLanguageFormatting: "auto",
   htmlWhitespaceSensitivity: "css",
   insertPragma: false,
-  jsxBracketSameLine: false,
   jsxSingleQuote: false,
   endOfLine: "lf",
   printWidth: 100,

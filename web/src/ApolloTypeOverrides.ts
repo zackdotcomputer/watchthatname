@@ -11,8 +11,8 @@ declare global {
   interface QueryOperationResult<TData> extends QueryResult<TData> {}
   interface MutationOperationResult<TData, TVariables> extends MutationTuple<TData, TVariables> {}
 
-  interface GraphQLQueryHookOptions extends QueryHookOptions {}
-  interface GraphQLMutationHookOptions extends MutationHookOptions {}
+  interface GraphQLQueryHookOptions<TData, TVariables> extends QueryHookOptions<TData, TVariables> {}
+  interface GraphQLMutationHookOptions<TData, TVariables> extends MutationHookOptions<TData, TVariables> {}
 }
 
 export {};

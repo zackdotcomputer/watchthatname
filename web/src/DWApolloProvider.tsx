@@ -88,16 +88,10 @@ export const DWApolloProvider: React.FunctionComponent<{
       <ApolloProviderWithFetchConfig config={graphQLClientConfig} useAuth={useAuth}>
         <GraphQLHooksProvider
           useQuery={
-            useQuery as unknown as (
-              query: DocumentNode,
-              options?: GraphQLQueryHookOptions
-            ) => QueryOperationResult
+            useQuery
           }
           useMutation={
-            useMutation as unknown as (
-              mutation: DocumentNode,
-              options?: GraphQLQueryHookOptions
-            ) => MutationOperationResult
+            useMutation
           }
         >
           {children}

@@ -20,13 +20,13 @@ export const schema = gql`
   }
 
   type Query {
-    search(input: SearchQueryInput!, offset: Int, limit: Int): [Domain!]!
-    favorites(offset: Int, limit: Int): [Domain!]!
-    findOne(domain: String!): Domain
+    search(input: SearchQueryInput!, offset: Int, limit: Int): [Domain!]! @skipAuth
+    favorites(offset: Int, limit: Int): [Domain!]! @requireAuth
+    findOne(domain: String!): Domain @skipAuth
   }
 
   type Mutation {
-    setWishdomain(input: SetWishInput!): Domain!
+    setWishdomain(input: SetWishInput!): Domain! @requireAuth
   }
 
   input SetWishInput {

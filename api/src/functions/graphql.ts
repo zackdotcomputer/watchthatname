@@ -1,17 +1,21 @@
-import { createGraphQLHandler, makeMergedSchema, makeServices } from "@redwoodjs/api";
-
-import schemas from "src/graphql/**/*.{js,ts}";
+import { createGraphQLHandler } from "@redwoodjs/graphql-server";
+import directives from "src/directives/**/*.{js,ts}";
+import sdls from "src/graphql/**/*.sdl.{js,ts}";
 import { db } from "src/lib/db";
 import services from "src/services/**/*.{js,ts}";
 
 import { getCurrentUser } from "src/lib/auth";
+import { logger } from "src/lib/logger";
 
 export const handler = createGraphQLHandler({
   getCurrentUser,
-  schema: makeMergedSchema({
-    schemas,
-    services: makeServices({ services })
-  }),
+  directives,
+  sdls,
+  services,
+  loggerConfig: {
+    logger,
+    options: { operationName: true, tracing: true },
+  },
   onException: () => {
     // Disconnect from your database with an unhandled exception.
     db.$disconnect();

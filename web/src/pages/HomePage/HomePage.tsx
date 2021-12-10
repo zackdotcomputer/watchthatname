@@ -1,7 +1,7 @@
 import { Form, SearchField, Submit } from "@redwoodjs/forms";
 import { navigate, routes } from "@redwoodjs/router";
-import React, { useEffect } from "react";
-import { usePlausible, useTrackPageview } from "src/PlausibleProvider";
+import React from "react";
+import { useTrackPageview } from "src/PlausibleProvider";
 
 const HomePage = () => {
   const onSubmit = (data) => {

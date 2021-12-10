@@ -1,21 +1,13 @@
-import { ApolloError, BeforeResolverSpecType } from "@redwoodjs/api";
-
 import { db } from "src/lib/db";
-import { requireAuth } from "src/lib/auth";
 import type { Domain, SearchQueryInput, SetWishInput } from "types/graphql";
 import { Availability, availabilityForDomains } from "src/lib/godaddy";
 import { buildDomains, splitName } from "src/lib/buildDomains";
 import whois from "whois-json";
 import { logger } from "src/lib/logger";
+import { RedwoodGraphQLError } from "@redwoodjs/graphql-server";
 
 const DOMAINS_PER_PAGE = 20;
 const CACHE_TTL = 12 * 60 * 60 * 1000; // 12 hours in milliseconds
-
-// Used when the environment variable REDWOOD_SECURE_SERVICES=1
-export const beforeResolver = (rules: BeforeResolverSpecType) => {
-  rules.add(() => requireAuth());
-  rules.skip({ only: ["search"] });
-};
 
 export const search = async ({
   input,
@@ -70,7 +62,7 @@ export const findOne = async ({ domain }: { domain: string }) => {
   const { desired, valid } = splitName(domain);
 
   if (!valid) {
-    throw new ApolloError("Invalid Domain", "404");
+    throw new RedwoodGraphQLError("404 - Invalid Domain");
   }
 
   const [results, favorited] = await Promise.all([

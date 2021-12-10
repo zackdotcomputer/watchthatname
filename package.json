@@ -10,7 +10,7 @@
   "devDependencies": {
     "@redwoodjs/core": "^0.39.4",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-prettier": "^4.0.0",
     "prettier": "^2.3.2"
   },
   "eslintConfig": {
@@ -18,7 +18,10 @@
     "root": true
   },
   "engines": {
-    "node": "14.x",
+    "node": ">=14.17 <=16.x",
     "yarn": "1.x"
+  },
+  "prisma": {
+    "seed": "yarn rw exec seed"
   }
 }
